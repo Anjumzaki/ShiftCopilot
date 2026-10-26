@@ -1,0 +1,14 @@
+{
+  "_comment": "Hand-maintained events merged into events.json by the daily action. Add concerts, matches, cruise-ship calls at Port Rashid, big conferences — anything the scraper misses. Times are Asia/Dubai local ISO.",
+  "events": [
+    {
+      "name": "EXAMPLE — delete me: Concert at Coca-Cola Arena",
+      "venue": "Coca-Cola Arena",
+      "lat": 25.2075,
+      "lng": 55.2627,
+      "startTime": "2026-11-01T20:00:00+04:00",
+      "endTime": "2026-11-01T23:00:00+04:00",
+      "magnitude": 3
+    }
+  ]
+}
