@@ -1,5 +1,6 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
+  AppState,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -60,15 +61,24 @@ function Field({label, hint, storageKey, placeholder, secure}: FieldProps) {
 export default function SettingsScreen() {
   const [listenerGranted, setListenerGranted] = useState<boolean | null>(null);
 
-  useFocusEffect(
-    useCallback(() => {
-      if (isAvailable()) {
-        isPermissionGranted().then(setListenerGranted);
-      } else {
-        setListenerGranted(false);
-      }
-    }, []),
-  );
+  const checkListener = useCallback(() => {
+    if (isAvailable()) {
+      isPermissionGranted().then(setListenerGranted);
+    } else {
+      setListenerGranted(false);
+    }
+  }, []);
+
+  useFocusEffect(checkListener);
+
+  // Re-check when the app returns to the foreground (e.g. coming back from
+  // the Android notification-access settings screen).
+  useEffect(() => {
+    const sub = AppState.addEventListener('change', state => {
+      if (state === 'active') checkListener();
+    });
+    return () => sub.remove();
+  }, [checkListener]);
 
   return (
     <ScrollView style={styles.root}>

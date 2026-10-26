@@ -13,11 +13,12 @@ export const DUBAI_LAT = 25.2048;
 export const DUBAI_LNG = 55.2708;
 
 /**
- * Static events feed produced by the GitHub Action in .github/workflows/events.yml.
- * Replace <USER>/<REPO> after you push and enable GitHub Pages on the repo.
+ * Static events feed, refreshed daily by .github/workflows/events.yml and
+ * served straight from the repo (no hosting). Users can override it in
+ * Settings → Events feed URL.
  */
 export const EVENTS_FEED_URL =
-  'https://<USER>.github.io/<REPO>/events/events.json';
+  'https://raw.githubusercontent.com/Anjumzaki/ShiftCopilot/main/events/events.json';
 
 /** How often the background task re-scores zones while shift mode is on. */
 export const SCORING_INTERVAL_MINUTES = 30;

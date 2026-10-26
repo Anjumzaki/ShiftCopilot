@@ -38,8 +38,8 @@ Release APK: `cd android && ./gradlew assembleRelease` (set up a real keystore f
 
 ## One-time setup (5 minutes)
 
-1. **Push this repo to GitHub** and enable **Pages** (Settings → Pages → deploy from branch, root). Enable Actions. The workflow refreshes `events/events.json` daily.
-2. In `src/config/constants.ts`, set `EVENTS_FEED_URL` to `https://<user>.github.io/<repo>/events/events.json` (or paste the URL in the app's Settings screen — it overrides the constant).
+1. **Push this repo to GitHub** (public). The Action refreshes `events/events.json` daily, and the app reads it straight from the repo's raw URL — no Pages, no hosting.
+2. `EVENTS_FEED_URL` in `src/config/constants.ts` points at `https://raw.githubusercontent.com/Anjumzaki/ShiftCopilot/main/events/events.json`; the app's Settings screen can override it per-device.
 3. **AeroDataBox key** (flight arrivals): free at rapidapi.com → AeroDataBox → paste in Settings.
 4. **OpenWeatherMap key** (rain alert): free at openweathermap.org → paste in Settings.
 5. On the driver's phone: Settings tab → **Grant notification access** (Android system screen opens; toggle ShiftCopilot on). Also disable battery optimization for the app (Settings → Apps → ShiftCopilot → Battery → Unrestricted) so shift mode survives long nights.
